@@ -1,42 +1,46 @@
-class ElemView{
+class ElemView {
     #index //egész szám
-    constructor(szuloElem, index){
+    constructor(szuloElem, index) {
         this.szuloElem = szuloElem
         this.#index = index
+        this.kattinthato = true
         //HTML tag létrehozása
         this.#htmlOsszerak()
         //meg kell fogni a gombokat
-        this.elem=$(".elem:last-child")
-        this.pElem=this.elem.children("p")
-        this.elem.on("click", () =>{
-            this.#sajatEsemenykezelo("kivalaszt")
+        this.elem = $(".elem:last-child")
+        this.pElem = this.elem.children("p")
+        this.elem.on("click", () => {
+            if (this.kattinthato) {
+                this.#sajatEsemenykezelo("kivalaszt")
+                this.kattinthato = false;
+            }
         })
     }
 
-    #htmlOsszerak(){
+    #htmlOsszerak() {
         let txt = ""
-        txt+= `
+        txt += `
                 <div class="elem">
                 <p></p>
                 </div>
         `
         txt += ""
         this.szuloElem.append(txt);
-        
+
     }
 
-    setErtek(jel){
+    setErtek(jel) {
         this.pElem.html(jel)
     }
 
-    #sajatEsemenykezelo(esemenynev){
+    #sajatEsemenykezelo(esemenynev) {
         //console.log(esemenynev)
-        const esemenyem = new CustomEvent(esemenynev, {detail:this})
+        const esemenyem = new CustomEvent(esemenynev, { detail: this })
         //const esemenyem = new CustomEvent(esemenynev, {detail:this.#index})
         window.dispatchEvent(esemenyem)
     }
-    
-    getIndex(){
+
+    getIndex() {
         return this.#index
     }
 }

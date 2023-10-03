@@ -12,7 +12,11 @@ class Controller {
         $(window).on("kivalaszt", (event) => {
             console.log(event.detail)
             this.MODELL.setAllapot(event.detail.getIndex());
-            event.detail.setErtek(this.MODELL.getErtek())
+            event.detail.setErtek(this.MODELL.getErtek());
+            /**Játék vége ellenőrzése */
+            if (this.MODELL.getVegeVanE() !== "tovább") {
+                console.log(this.MODELL.getVegeVanE())
+            }
         })
     }
 }
