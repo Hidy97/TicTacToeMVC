@@ -1,6 +1,8 @@
 class ElemView{
-    constructor(szuloElem){
+    #index //egész szám
+    constructor(szuloElem, index){
         this.szuloElem = szuloElem
+        this.#index = index
         //HTML tag létrehozása
         this.#htmlOsszerak()
         //meg kell fogni a gombokat
@@ -19,7 +21,7 @@ class ElemView{
                 </div>
         `
         txt += ""
-        this.szuloElem.html(txt);
+        this.szuloElem.append(txt);
         
     }
 
@@ -28,9 +30,14 @@ class ElemView{
     }
 
     #sajatEsemenykezelo(esemenynev){
-        console.log(esemenynev)
-        const esemenyem = new CustomEvent(esemenynev)
+        //console.log(esemenynev)
+        const esemenyem = new CustomEvent(esemenynev, {detail:this})
+        //const esemenyem = new CustomEvent(esemenynev, {detail:this.#index})
         window.dispatchEvent(esemenyem)
+    }
+    
+    getIndex(){
+        return this.#index
     }
 }
 

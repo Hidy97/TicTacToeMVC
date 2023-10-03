@@ -1,18 +1,33 @@
-*{
+* {
     margin: auto;
 }
-body{
+
+body {
     width: 80%;
     max-width: 1000px;
     margin: auto;
 }
 
-.elem{
+.elem {
     width: 50px;
     height: 50px;
-    border: 1px dashed black;
+    border: 2px dashed rgb(110, 5, 104);
     text-align: center;
     background-color: rgb(212, 254, 240);
     color: rgb(48, 120, 120);
     font-weight: bold;
+}
+
+.elem:hover{
+    background-color: rgb(110, 5, 104);
+    color: rgb(237, 65, 229);
+    border: 2px dashed rgb(193, 10, 53);
+}
+
+.jatekter{
+    width: 160px;
+    display: grid;
+    grid-template-columns: repeat(3, 50px);
+    grid-template-rows: repeat(3, 50px);
+    cursor: grab;
 }

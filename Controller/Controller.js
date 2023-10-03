@@ -3,13 +3,16 @@ import ElemView from "../View/ElemView.js";
 
 class Controller {
     constructor() {
-        const MODELL = new Modell();
+        this.MODELL = new Modell();
+        for (let index = 0; index < 9; index++) {
+            //const ELEMVIEW = new ElemView($(".jatekter"));
+            this.ELEMVIEW = new ElemView($(".jatekter"), index)
+        }
 
-        const ELEMVIEW = new ElemView($("article"));
-
-        $(window).on("kivalaszt", () => {
-            MODELL.setAllapot();
-            ELEMVIEW.setErtek(MODELL.getErtek())
+        $(window).on("kivalaszt", (event) => {
+            console.log(event.detail)
+            this.MODELL.setAllapot(event.detail.getIndex());
+            event.detail.setErtek(this.MODELL.getErtek())
         })
     }
 }
